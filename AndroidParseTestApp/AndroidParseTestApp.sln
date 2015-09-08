@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidParseTestApp", "AndroidParseTestApp\AndroidParseTestApp.csproj", "{87E92275-7AC1-45B4-967B-E2564BFCFCA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidParseTestApp.UITests", "AndroidParseTestApp.UITests\AndroidParseTestApp.UITests.csproj", "{7CB66205-083C-439A-8CD7-7386A5620BAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CB66205-083C-439A-8CD7-7386A5620BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB66205-083C-439A-8CD7-7386A5620BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB66205-083C-439A-8CD7-7386A5620BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB66205-083C-439A-8CD7-7386A5620BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87E92275-7AC1-45B4-967B-E2564BFCFCA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87E92275-7AC1-45B4-967B-E2564BFCFCA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87E92275-7AC1-45B4-967B-E2564BFCFCA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87E92275-7AC1-45B4-967B-E2564BFCFCA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
