@@ -41,12 +41,36 @@ namespace AndroidParseTestApp
 				e.Handled = false;
 				if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
 				{
-					ParseQuery<ParseObject> query = ParseObject.GetQuery ("TestClass");
-					ParseObject object1 = await query.GetAsync (string.Format("{0}", edittext.Text));
-					string TestName = object1.Get<string> ("TestName");
-//					btn.Text = string.Format ("{0}", TestName);
-					Toast.MakeText(this, string.Format ("{0}", TestName), ToastLength.Long).Show();
-					e.Handled = true;
+					
+
+
+
+					ParseQuery<ParseObject> query = ParseObject.GetQuery("TestClass")
+						.WhereEqualTo("TestName", string.Format("{0}", edittext.Text));
+					IEnumerable<ParseObject> results = await query.FindAsync();
+					//string name = query.Find<String>("TestName");
+
+					foreach(var result in results)
+					{
+						if(result.Get<String>("TestName") == string.Format("{0}", edittext.Text))
+						{
+							
+							Button btn = FindViewById<Button>(Resource.Id.button1);
+							btn.Text = string.Format("{0}",edittext.Text);
+
+						}
+						else
+						{
+							Button btn = FindViewById<Button>(Resource.Id.button1);
+							btn.Text = string.Format("{0}","Nothing found");
+						}
+	
+					}
+
+
+
+
+			
 				}
 			};
 
