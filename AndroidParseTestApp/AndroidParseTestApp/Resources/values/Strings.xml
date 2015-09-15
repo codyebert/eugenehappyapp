@@ -2,5 +2,16 @@
 <resources>
 	<string name="hello">Search/</string>
 	<string name="app_name">AndroidParseTestApp</string>
+	<string name="day_prompt">Choose a Day</string>
+    <string-array name="day_array">
+    	<item>Today!</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
 
 </resources>

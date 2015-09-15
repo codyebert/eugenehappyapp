@@ -28,6 +28,22 @@ namespace AndroidParseTestApp
 		{
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int day_array = 2131034112;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -60,11 +76,38 @@ namespace AndroidParseTestApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int button1 = 2131034113;
+			// aapt resource value: 0x7f06000a
+			public const int button1 = 2131099658;
 			
-			// aapt resource value: 0x7f050000
-			public const int edittext = 2131034112;
+			// aapt resource value: 0x7f060004
+			public const int day_prompt = 2131099652;
+			
+			// aapt resource value: 0x7f060001
+			public const int edittext = 2131099649;
+			
+			// aapt resource value: 0x7f060000
+			public const int listView1 = 2131099648;
+			
+			// aapt resource value: 0x7f060002
+			public const int radioGroup1 = 2131099650;
+			
+			// aapt resource value: 0x7f060007
+			public const int spinner1 = 2131099655;
+			
+			// aapt resource value: 0x7f060009
+			public const int spinner2 = 2131099657;
+			
+			// aapt resource value: 0x7f060003
+			public const int textView1 = 2131099651;
+			
+			// aapt resource value: 0x7f060006
+			public const int textView2 = 2131099654;
+			
+			// aapt resource value: 0x7f060008
+			public const int textView3 = 2131099656;
+			
+			// aapt resource value: 0x7f060005
+			public const int textView4 = 2131099653;
 			
 			static Id()
 			{
@@ -80,7 +123,10 @@ namespace AndroidParseTestApp
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int List = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Main = 2130903041;
 			
 			static Layout()
 			{
@@ -97,6 +143,9 @@ namespace AndroidParseTestApp
 			
 			// aapt resource value: 0x7f040001
 			public const int app_name = 2130968577;
+			
+			// aapt resource value: 0x7f040002
+			public const int day_prompt = 2130968578;
 			
 			// aapt resource value: 0x7f040000
 			public const int hello = 2130968576;

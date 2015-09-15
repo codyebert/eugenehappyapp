@@ -14,6 +14,13 @@ namespace AndroidParseTestApp
 	[Activity (Label = "AndroidParseTestApp", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
+		private void spinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Spinner spinner = (Spinner)sender;
+
+			string toast = string.Format ("You've chosen {0}", spinner.GetItemAtPosition (e.Position));
+			Toast.MakeText (this, toast, ToastLength.Long).Show ();
+		}
 //		int count = 1;
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -21,22 +28,7 @@ namespace AndroidParseTestApp
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
-
-		
-
-//			Get our button from the layout resource,
-// 			and attach an event to it
-
-//			var btn = this.FindViewById<Button> (Resource.Id.Button);
-//			btn.Click += async (sender, e) => {
-//				ParseQuery<ParseObject> query = ParseObject.GetQuery ("TestClass");
-//				ParseObject object1 = await query.GetAsync ("HQSr8bt1Zp");
-//				string TestName = object1.Get<string> ("TestName");
-//				btn.Text = string.Format ("{0}", TestName);
-//			};
-//		
 			EditText edittext = FindViewById<EditText>(Resource.Id.edittext);
-
 			edittext.KeyPress += async (object sender, View.KeyEventArgs e) =>{
 				e.Handled = false;
 				if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
@@ -46,24 +38,43 @@ namespace AndroidParseTestApp
 
 
 					ParseQuery<ParseObject> query = ParseObject.GetQuery("TestClass")
-						.WhereEqualTo("TestName", string.Format("{0}", edittext.Text));
+						.WhereStartsWith("TestName", string.Format("{0}", edittext.Text));
 					IEnumerable<ParseObject> results = await query.FindAsync();
 					//string name = query.Find<String>("TestName");
 
+					//ExpandableListView view = FindViewById<ExpandableListView>(Resource.Id.list1);
+					var count = await query.CountAsync();
+
 					foreach(var result in results)
 					{
-						if(result.Get<String>("TestName") == string.Format("{0}", edittext.Text))
+						if(count > 0)
+						{
+							//add all items into a list
+							for (int i = 0; i < count; i++)
+							{
+								
+							}
+						}
+						else 
+						{
+							//Return "No items found"
+						}
+
+
+
+						//Outputs ONE result as a button
+						/*if(result.Get<String>("TestName") == string.Format("{0}", edittext.Text))
 						{
 							
 							Button btn = FindViewById<Button>(Resource.Id.button1);
-							btn.Text = string.Format("{0}",edittext.Text);
+							btn.Text = string.Format("{0}",count);
 
 						}
 						else
 						{
 							Button btn = FindViewById<Button>(Resource.Id.button1);
-							btn.Text = string.Format("{0}","Nothing found");
-						}
+							btn.Text = string.Format("{0}",count);
+						}*/
 	
 					}
 
@@ -73,38 +84,18 @@ namespace AndroidParseTestApp
 			
 				}
 			};
+			Spinner spinner = FindViewById<Spinner> (Resource.Id.day_prompt);
 
-//			var btn = this.FindViewById<Button>(Resource.Id.Button);
-//			btn.Click += async (sender, e) => {
-//				var query = ParseObject.GetQuery("TestClass")
-//					.WhereNotEqualTo("TestName", "The Vintage");
-//				
-//					
-//				btn.Text = string.Format ("{0}", query);
-//			};
+			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
+			var adapter = ArrayAdapter.CreateFromResource (
+				this, Resource.Array.day_array, Android.Resource.Layout.SimpleSpinnerItem);
 
-
-
-//			how to print
-//			System.Diagnostics.Debug.WriteLine ();
-
-
-//			create a new user
-
-//			var user = new ParseUser ()
-//			{
-//				Username = "my name",
-//				Password = "my pass",
-//				Email = "email@example.com"
-//			};
-//
-//			// other fields can be set just like with ParseObject
-//			user ["phone"] = "415-392-0202";
-//
-//			await user.SignUpAsync ();
+			adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			spinner.Adapter = adapter;
 
 		}
 	}
 }
+
 
 
