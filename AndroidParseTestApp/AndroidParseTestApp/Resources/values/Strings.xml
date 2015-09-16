@@ -2,6 +2,7 @@
 <resources>
 	<string name="hello">Search/</string>
 	<string name="app_name">AndroidParseTestApp</string>
+
 	<string name="day_prompt">Choose a Day</string>
     <string-array name="day_array">
     	<item>Today!</item>
@@ -12,6 +13,21 @@
         <item>Friday</item>
         <item>Saturday</item>
         <item>Sunday</item>
+    </string-array>
+
+    <string name="start_time">Choose a Time</string>
+    <string-array name = "startTimeArray">
+    <item> Now! </item>
+    <item> Any time </item>
+    <item> 12:00 AM </item>
+    <item> 1:00 AM </item>
+    </string-array>
+
+    <string name="end_time">Choose a Time</string>
+    <string-array name = "endTimeArray">
+    <item> Any time </item>
+    <item> 12:00 AM </item>
+    <item> 1:00 AM </item>
     </string-array>
 
 </resources>

@@ -28,62 +28,46 @@ namespace AndroidParseTestApp
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
+
 			EditText edittext = FindViewById<EditText>(Resource.Id.edittext);
-			edittext.KeyPress += async (object sender, View.KeyEventArgs e) =>{
+			edittext.KeyPress += async (object sender, View.KeyEventArgs e) => 
+			{
 				e.Handled = false;
-				if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
+
+				if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter) 
 				{
-					
+					//Query based on user input, name of venue
+					ParseQuery<ParseObject> query = ParseObject.GetQuery ("TestClass")
+						.WhereStartsWith ("TestName", string.Format ("{0}", edittext.Text));
+					IEnumerable<ParseObject> results = await query.FindAsync ();
 
+					//Number of objects returned
+					var count = await query.CountAsync ();
+					//Create array
 
+					string[] arr = null;
+					int i = 0;
 
-					ParseQuery<ParseObject> query = ParseObject.GetQuery("TestClass")
-						.WhereStartsWith("TestName", string.Format("{0}", edittext.Text));
-					IEnumerable<ParseObject> results = await query.FindAsync();
-					//string name = query.Find<String>("TestName");
-
-					//ExpandableListView view = FindViewById<ExpandableListView>(Resource.Id.list1);
-					var count = await query.CountAsync();
-
-					foreach(var result in results)
+					//Iterates list of results
+					foreach (var result in results) 
 					{
-						if(count > 0)
-						{
-							//add all items into a list
-							for (int i = 0; i < count; i++)
-							{
-								
-							}
-						}
-						else 
-						{
-							//Return "No items found"
-						}
+						string objId = result.Get<String>("TestName");
+						arr[i] = objId;
+						i++;
 
-
-
-						//Outputs ONE result as a button
-						/*if(result.Get<String>("TestName") == string.Format("{0}", edittext.Text))
-						{
-							
-							Button btn = FindViewById<Button>(Resource.Id.button1);
-							btn.Text = string.Format("{0}",count);
-
-						}
-						else
-						{
-							Button btn = FindViewById<Button>(Resource.Id.button1);
-							btn.Text = string.Format("{0}",count);
-						}*/
-	
 					}
 
-
-
-
 			
+						var intent = new Intent (this, typeof(ListActivity));
+						intent.PutExtra("this", arr);
+
 				}
 			};
+			/*Button btn = FindViewById<Button> (Resource.Id.button1);
+			btn.Click += async(sender, e) => {
+			}*/
+					
+			//SPINNER LOGIC
 			Spinner spinner = FindViewById<Spinner> (Resource.Id.day_prompt);
 
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
@@ -93,8 +77,26 @@ namespace AndroidParseTestApp
 			adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			spinner.Adapter = adapter;
 
+			Spinner spinner1 = FindViewById<Spinner> (Resource.Id.start_time);
+
+			spinner1.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
+			var adapter1 = ArrayAdapter.CreateFromResource (
+				this, Resource.Array.startTimeArray, Android.Resource.Layout.SimpleSpinnerItem);
+
+			adapter1.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			spinner1.Adapter = adapter1;
+
+			Spinner spinner2 = FindViewById<Spinner> (Resource.Id.end_time);
+
+			spinner2.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
+			var adapter2 = ArrayAdapter.CreateFromResource (
+				this, Resource.Array.endTimeArray, Android.Resource.Layout.SimpleSpinnerItem);
+
+			adapter2.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			spinner2.Adapter = adapter2;
 		}
 	}
+
 }
 
 
