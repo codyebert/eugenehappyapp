@@ -21,31 +21,21 @@ namespace AndroidParseTestApp
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.List);
 
+			//Receiving intents
+			string venue = Intent.GetStringExtra ("barname") ?? "Data Not Available";
+			string day = Intent.GetStringExtra ("day") ?? "Data Not Available";
+			string startTime = Intent.GetStringExtra ("start") ?? "Data Not Available";
+			string endTime = Intent.GetStringExtra ("end") ?? "Data Not Available";
 
 
 
+			//Query based on user input, name of venue
+			/*ParseQuery<ParseObject> query = ParseObject.GetQuery ("TestClass")
+				.WhereStartsWith ("TestName", string.Format ("{0}", edittext.Text));
+			IEnumerable<ParseObject> results = await query.FindAsync ();
 
-			//Button to send to general info page
-			/*Button generalinfobutton = FindViewById<Button> (Resource.Id.button1);
-			generalinfobutton.Click += async (sender, e) =>
-			{
-				var query = ParseObject.GetQuery("TestClass")
-					.WhereEqualTo("TestName", string.Format("{0}", edittext.Text));
-				IEnumerable<ParseObject> results = await query.FindAsync();
-				foreach(var result in results)
-				{    
-					string barname = string.Format("{0}",result.Get<String>("TestName"));
-
-					string streetaddress = result.Get<string>("StreetAddress");
-					string citystatezip = result.Get<string>("CityStateZip");
-					string phone = result.Get<string>("Phone");
-					string barinfo = streetaddress + "\n" + citystatezip + "\n" + phone ; 
-					var intent = new Intent(this, typeof(GeneralInfoActivity));
-					intent.PutExtra("barname", barname);
-					intent.PutExtra("barinfo", barinfo);
-					StartActivity(intent);
-				}
-			};*/
+			//Number of objects returned
+			var count = await query.CountAsync ();*/
 
 		}
 	}
